@@ -12,10 +12,9 @@ datasource db {
 
 model User{
   id Int @id @default(autoincrement())
-  Email String?
+  Email String @unique
   Password String
-  data_id Int
-  Data Data @relation(fields: [data_id], references: [id])
+  Data Data []
 }
 
 model Data{
@@ -23,5 +22,6 @@ model Data{
   WebSite String
   Account String
   Password String
-  User User []
+  User_id Int
+  User User @relation(fields: [User_id], references: [id])
 }
